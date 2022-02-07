@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { Model } = require('sequelize/types');
 const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
@@ -7,7 +6,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', (req, res) => {
   Tag.findAll({
     include: [{
-      Model: Product,
+      model: Product,
       through: ProductTag
     }]
   }).then((tags) => res.json(tags))
